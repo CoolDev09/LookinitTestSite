@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Results</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <style>
         button {
@@ -12,47 +13,9 @@
     </style>
 </head>
 <body>
+    <!-- Container for displaying search results -->
     <div id="searchResults"></div>
-
-    <script>
-    // Get the search query from the URL parameters
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-let query = urlParams.get('query');
-
-console.log('Search query:', query); // Debugging
-
-const searchResults = document.getElementById('searchResults');
-
-// Fetch the JSON data
-fetch('ranked_domains.json') // Update the file name here
-    .then(response => response.json())
-    .then(data => {
-        console.log('JSON data:', data); // Debugging
-
-        const filteredData = data.filter(item => {
-            return item.domain.toLowerCase().includes(query.toLowerCase());
-        });
-
-        console.log('Filtered data:', filteredData); // Debugging
-
-        if (filteredData.length === 0) {
-            searchResults.innerHTML = '<p>No results found for "' + query + '".</p>';
-        } else {
-            filteredData.forEach(item => {
-                const button = document.createElement('button');
-                button.textContent = item.domain;
-                button.addEventListener('click', function() {
-                    window.open('https://' + item.domain, '_blank'); // Open link in new tab
-                });
-                searchResults.appendChild(button);
-            });
-        }
-    })
-    .catch(error => {
-        console.error('Error fetching data:', error);
-    });
-
-    </script>
+    
+    <script src="script.js"></script> <!-- Include JavaScript file -->
 </body>
 </html>
