@@ -1,25 +1,44 @@
-// search.js
+// Function to fetch JSON data
+function fetchDataFromJSON() {
+    fetch('ranked_domains.json')
+        .then(response => response.json())
+        .then(data => {
+            console.log('JSON data:', data); // Debugging
 
-document.addEventListener("DOMContentLoaded", function() {
-    const searchInput = document.getElementById('searchInput2');
-    const searchButton = document.getElementById('searchButton2');
+            // Process data and display search results (example)
+            const searchResults = document.getElementById('searchResults');
+            // Your code here to process the data and display search results
+        })
+        .catch(error => {
+            console.error('Error fetching JSON data:', error);
+        });
+}
 
-    function performSearch() {
-        const query = searchInput.value.trim().toLowerCase();
+// Function to fetch CSV data
+function fetchDataFromCSV() {
+    fetch('random.csv')
+        .then(response => response.text())
+        .then(csvData => {
+            console.log('CSV data:', csvData); // Debugging
 
-        if (query.length === 0) {
-            return;
-        }
+            // Split CSV data by lines
+            const lines = csvData.split('\n');
+            // Process lines and display search results (example)
+            const searchResults = document.getElementById('searchResults');
+            lines.forEach(line => {
+                const button = document.createElement('button');
+                button.textContent = line.trim(); // Remove leading/trailing whitespace
+                button.addEventListener('click', function() {
+                    window.open('https://' + line.trim(), '_blank'); // Open link in new tab
+                });
+                searchResults.appendChild(button);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching CSV data:', error);
+        });
+}
 
-        // Redirect to search results page with query parameter
-        window.location.href = 'results.html?query=' + encodeURIComponent(query);
-    }
-
-    searchInput.addEventListener('keypress', function(event) {
-        if (event.key === 'Enter') {
-            performSearch();
-        }
-    });
-
-    searchButton.addEventListener('click', performSearch);
-});
+// Call functions to fetch data
+fetchDataFromJSON(); // Fetch JSON data
+fetchDataFromCSV(); // Fetch CSV data
