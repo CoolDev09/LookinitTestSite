@@ -1,0 +1,221 @@
+body{
+background-color: #879582;
+color:#595353;
+font-size: 50px;
+}
+
+/*Search Bar 1*/
+.search-container {
+    display: block;
+    justify-content: center; /* Horizontally center the container */
+    bottom: 10px;
+}
+
+#searchButton {
+    height: 71px;
+    width: 100px;
+    padding: 10px; 
+    font-size: 25px; 
+    border: 1px solid #999999; 
+    height: 71px;
+    border-radius: 15px;
+    background-color: #545454;
+    color: #747474;
+    cursor: pointer;
+}
+
+#searchButton button:hover {
+    background-color: #000000; 
+    color:#ffffff;
+}
+
+#searchInput {
+    width: 650px; 
+    height: 50px;
+    padding: 10px; 
+    font-size: 25px; 
+    border: 1px solid #999999; 
+    border-radius: 15px;
+    background-color: #585858;
+    color: #747474;
+}
+
+#searchInput:focus {
+    outline: none; 
+    border-color: #636569; 
+}
+
+/*Symbols*/
+#Youtube {
+    position: absolute;
+    left: 350px; 
+    bottom: 340px;
+    color:#595353;
+}
+
+#Gmail {
+    position: absolute;
+    left: 500px; 
+    bottom: 340px;
+    color:#595353;
+}
+
+#Discord {
+    position: absolute;
+    left: 650px; 
+    bottom: 340px;
+    color:#595353;
+}
+
+#Chatgpt {
+    position: absolute;
+    left: 800px; 
+    bottom: 340px;
+    color:#595353;
+}
+
+#Google {
+    position: absolute;
+    left: 950px; 
+    bottom: 340px;
+    color:#595353;
+}
+
+#Googledocs {
+    position: absolute;
+    left: 350px; 
+    bottom: 200px; 
+    color:#595353;
+}
+
+#Googlesites {
+    position: absolute;
+    left: 500px; 
+    bottom: 200px; 
+    color:#595353;
+}
+
+#Echo {
+    position: absolute;
+    left: 650px; 
+    bottom: 200px; 
+    color:#595353;
+}
+
+#IXL {
+    position: absolute;
+    left: 800px; 
+    bottom: 200px; 
+    color:#595353;
+}
+
+#Googleclassroom {
+    position: absolute;
+    left: 950px; 
+    bottom: 200px; 
+    color:#595353;
+}
+
+
+/*Credits section*/
+#Github-credit {
+    background-color: #545454; 
+    color: #747474;
+    height: 35px;
+    width: 100px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+#Instructions {
+    background-color: #545454; 
+    color: #747474;
+    height: 35px;
+    width: 150px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+
+
+/*Search Bar 2*/
+.search-container2 {
+    display: flex; /* Use flexbox layout */
+    justify-content: center; /* Horizontally center the container */
+    align-items: center;
+}
+
+#searchButton2 {
+    height: 71px;
+    width: 100px;
+    padding: 10px; 
+    font-size: 25px; 
+    border: 1px solid #999999; 
+    border-radius: 15px;
+    background-color: #545454;
+    color: #747474;
+    cursor: pointer;
+}
+
+#searchButton2 button:hover {
+    background-color: #000000; 
+    color:#ffffff;
+}
+
+
+#searchInput2 {
+    width: 650px; 
+    height: 50px;
+    padding: 10px; 
+    font-size: 25px; 
+    border: 1px solid #999999; 
+    border-radius: 15px;
+    background-color: #585858;
+    color: #747474;
+}
+
+#searchInput2:focus {
+    outline: none; 
+    border-color: #636569; 
+}
+
+#searchResults button {
+    display: block;
+    margin-bottom: 5px; /* Adjust spacing between buttons */
+    padding: 10px 20px; /* Adjust button padding */
+    background-color: #4d524d; /* Green background color */
+    color: #747474;
+    font-size: 25px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    height: 50px;
+    width: 650px;
+}
+
+#searchResults2 button {
+    display: block;
+    margin-bottom: 5px; /* Adjust spacing between buttons */
+    padding: 10px 20px; /* Adjust button padding */
+    background-color: #4d524d; /* Green background color */
+    color: #000000;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    height: 50px;
+    width: 650px;
+}
+
+#searchResults2 button:hover {
+    background-color: #000000; /* Darker green color on hover */
+    color:#ffffff;
+}
+
+#searchResults2 button:disabled {
+    background-color: #dddddd; /* Gray background color for disabled button */
+    cursor: not-allowed;
+}
