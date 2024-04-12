@@ -26,12 +26,15 @@ function fetchDataFromCSV() {
             // Process lines and display search results (example)
             const searchResults = document.getElementById('searchResults');
             lines.forEach(line => {
-                const button = document.createElement('button');
-                button.textContent = line.trim(); // Remove leading/trailing whitespace
-                button.addEventListener('click', function() {
-                    window.open('https://' + line.trim(), '_blank'); // Open link in new tab
-                });
-                searchResults.appendChild(button);
+                const trimmedLine = line.trim(); // Remove leading/trailing whitespace
+                if (trimmedLine) { // Check if line is not empty
+                    const button = document.createElement('button');
+                    button.textContent = trimmedLine;
+                    button.addEventListener('click', function() {
+                        window.open('https://' + trimmedLine, '_blank'); // Open link in new tab
+                    });
+                    searchResults.appendChild(button);
+                }
             });
         })
         .catch(error => {
