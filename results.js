@@ -1,7 +1,7 @@
 // Function to fetch data from CSV file and add .com to all domains
 function fetchDataFromCSV() {
     return new Promise((resolve, reject) => {
-        fetch('final_15million.csv') // Updated file name
+        fetch('final_15million.csv') // Adjust the file name accordingly
             .then(response => response.text())
             .then(csvData => {
                 // Split CSV data by lines
@@ -26,3 +26,17 @@ function fetchDataFromCSV() {
             });
     });
 }
+
+// Call function to fetch data from CSV file and handle search results
+fetchDataFromCSV()
+    .then(data => {
+        // Display search results in the searchResults container
+        const searchResultsContainer = document.getElementById('searchResults');
+        // Append each button to the container
+        data.forEach(button => {
+            searchResultsContainer.appendChild(button);
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching search results:', error);
+    });
