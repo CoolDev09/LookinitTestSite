@@ -14,5 +14,5 @@ function handleSearch() {
     window.location.href = 'results.html?query=' + encodeURIComponent(query);
 }
 
-// Call function to handle search when "Enter" key is pressed in the search input
+// Attach event listener to the "keydown" event on the search input
 document.getElementById('searchInput2').addEventListener('keydown', handleEnterKey);
