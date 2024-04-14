@@ -6,42 +6,18 @@ function fetchDataFromCSV(query) {
             .then(csvData => {
                 // Split CSV data by lines
                 const lines = csvData.split('\n');
-                // Extract domain names and calculate relevance score based on search query
+                // Extract domain names and filter based on relevance to search query
                 const filteredData = lines.map(line => {
                     const parts = line.split(',');
-                    const id = parts[0];
                     const domain = parts[1].trim().toLowerCase(); // Convert to lowercase for case-insensitive matching
-                    const relevanceScore = calculateRelevanceScore(domain, query);
-                    return { domain, relevanceScore };
-                }).filter(item => item.relevanceScore > 0); // Remove items with zero relevance
-                // Sort the filtered data based on relevance score (descending order)
-                filteredData.sort((a, b) => b.relevanceScore - a.relevanceScore);
-                // Extract domain names from sorted data
-                const resultDomains = filteredData.map(item => item.domain);
-                resolve(resultDomains);
+                    return domain;
+                }).filter(domain => domain.includes(query.toLowerCase())); // Filter based on search query
+                resolve(filteredData);
             })
             .catch(error => {
                 reject(error);
             });
     });
-}
-
-// Function to calculate relevance score of a domain to the search query
-function calculateRelevanceScore(domain, query) {
-    // Convert query and domain to lowercase for case-insensitive matching
-    query = query.toLowerCase();
-    domain = domain.toLowerCase();
-    // Check if domain contains the entire query
-    if (domain.includes(query)) {
-        // If the domain exactly matches the query, return a high relevance score
-        if (domain === query) {
-            return 100;
-        }
-        // Otherwise, return a moderate relevance score
-        return 50;
-    }
-    // If domain doesn't contain the entire query, return zero relevance score
-    return 0;
 }
 
 // Function to handle search functionality and display search results
