@@ -15,10 +15,6 @@ document.addEventListener("DOMContentLoaded", function() {
         openLink(url);
     }
 
-    searchInput.addEventListener('keypress', function(event) {
-        if (event.key === 'Enter') {
-            search();
-        }
     });
 
     searchButton.addEventListener('click', search); // Add click event listener to the search button
