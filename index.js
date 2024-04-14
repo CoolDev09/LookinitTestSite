@@ -1,14 +1,18 @@
-// Function to handle search functionality
-function handleSearch() {
-    const searchInput = document.getElementById('searchInput2');
-    const searchButton = document.getElementById('searchButton2');
-
-    searchButton.addEventListener('click', function() {
-        const query = searchInput.value.trim().toLowerCase();
-        // Redirect to results page with search query in URL parameter
-        window.location.href = 'results.html?query=' + query;
-    });
+// Function to handle search functionality when "Enter" key is pressed
+function handleEnterKey(event) {
+    if (event.key === 'Enter') {
+        handleSearch();
+    }
 }
 
-// Call function to handle search functionality when the page loads
-window.addEventListener('load', handleSearch);
+// Function to handle search functionality and display search results
+function handleSearch() {
+    const searchInput = document.getElementById('searchInput2');
+    const query = searchInput.value.trim(); // Get search query
+
+    // Redirect to results page with search query in URL parameter
+    window.location.href = 'results.html?query=' + encodeURIComponent(query);
+}
+
+// Call function to handle search when "Enter" key is pressed in the search input
+document.getElementById('searchInput2').addEventListener('keydown', handleEnterKey);
