@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const url = formatURL(query);
         openLink(url);
     }
-
     });
 
     searchButton.addEventListener('click', search); // Add click event listener to the search button
