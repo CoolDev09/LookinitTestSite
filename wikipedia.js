@@ -1,55 +1,49 @@
-// Function to fetch Wikipedia search results
+// Define a function to fetch Wikipedia search results
 function fetchWikipediaResults(query) {
-    // Construct the URL for the Wikipedia API
-    const apiUrl = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${query}&format=json&origin=*`;
+    // Construct the Wikipedia API URL
+    const apiUrl = `https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&srsearch=${query}&origin=*`;
 
-    // Fetch Wikipedia search results
-    return fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            // Extract search results from the response
-            return data.query.search.map(result => {
-                return {
-                    title: result.title,
-                    snippet: result.snippet
-                };
-            });
-        })
-        .catch(error => {
-            console.error('Error fetching Wikipedia search results:', error);
-            return []; // Return an empty array in case of error
-        });
+    // Make a GET request to the Wikipedia API
+    return $.get(apiUrl);
 }
 
-// Function to display Wikipedia search results
+// Define a function to display Wikipedia search results
 function displayWikipediaResults(results) {
-    const wikipediaResultsContainer = document.getElementById('wikipediaResults');
+    // Clear the previous Wikipedia search results
+    $('#wikipediaResults').empty();
 
-    // Clear previous results
-    wikipediaResultsContainer.innerHTML = '';
+    // Loop through the search results and append them to the #wikipediaResults div
+    results.query.search.forEach(result => {
+        const title = result.title;
+        const snippet = result.snippet;
+        const url = `https://en.wikipedia.org/wiki/${encodeURIComponent(title)}`;
 
-    // Display each Wikipedia search result
-    results.forEach(result => {
-        const resultElement = document.createElement('div');
-        resultElement.innerHTML = `<h3>${result.title}</h3><p>${result.snippet}</p>`;
-        wikipediaResultsContainer.appendChild(resultElement);
+        const resultHtml = `<div class="wikipedia-result">
+            <h3><a href="${url}" target="_blank">${title}</a></h3>
+            <p>${snippet}</p>
+        </div>`;
+
+        $('#wikipediaResults').append(resultHtml);
     });
 }
 
-// Function to handle search functionality and display search results
-function handleSearch() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const query = urlParams.get('query').trim(); // Get search query from URL parameter
-
-    // Display search results from your CSV file
+// Function to handle search and display results
+function handleSearch(query) {
+    // Fetch search results from your CSV file (function to display search results from results.js)
     displaySearchResultsFromCSV(query);
 
-    // Fetch and display Wikipedia search results
+    // Fetch Wikipedia search results
     fetchWikipediaResults(query)
-        .then(results => {
-            displayWikipediaResults(results);
+        .done(displayWikipediaResults) // Display Wikipedia search results on success
+        .fail(function(error) {
+            console.error('Error fetching Wikipedia search results:', error);
         });
 }
 
-// Call function to handle search functionality when the page loads
-window.addEventListener('load', handleSearch);
+// Call handleSearch function when the page loads
+$(document).ready(function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get('query');
+
+    handleSearch(query);
+});
