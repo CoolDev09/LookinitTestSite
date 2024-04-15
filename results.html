@@ -5,11 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Results</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            display: flex;
+        }
+        #searchResults {
+            flex-grow: 1;
+        }
+        #wikipediaResults {
+            flex-grow: 1;
+            margin-left: 10px;
+        }
+    </style>
 </head>
 <body>
     <div id="searchResults"></div>
 
-    <!-- Include the JavaScript file for handling search results -->
+    <div id="wikipediaResults">
+        <!-- Wikipedia search results will be displayed here -->
+    </div>
+
+    <script src="wikipedia.js"></script>
     <script src="results.js"></script>
 </body>
 </html>
